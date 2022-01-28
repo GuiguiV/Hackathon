@@ -42,8 +42,6 @@ void Game::afficher(){
 
 bool mouvement_possible (Dir dir, const Joueur& joueur, const Terrain& terrain){
     std::vector<int> pos=joueur.get_pos();
-    std::vector<char> tableau = terrain.get_tableau(); // ???
-
     if (dir == Dir::DROITE){
         std::vector<int> new_pos {pos[0]+1,pos[1]};
     }

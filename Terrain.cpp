@@ -33,9 +33,17 @@ void Terrain::print(){
     }
 }
 
+void Terrain::add(std::vector<int> pos, char key){
+    int x = pos[0];
+    int y = pos[1];
+    int where = LineLenght * y + x;
+    ground[where] = key;
+}
+
 char Terrain::get_value(std::vector<int> pos){
     int x = pos[0];
     int y = pos[1];
     int where = LineLenght * y + x;
     return ground[where];
 }
+

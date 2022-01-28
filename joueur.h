@@ -8,38 +8,42 @@ enum class Arme{EPEE, ARC};
 
 class Entite{
     public:
-    Entite(std::vector<int>& pos,char symbole);
+    Entite(const std::vector<int>& pos,char symbole);
     std::vector<int> get_pos()const;
     void set_pos(const std::vector<int>& pos);
     char get_symbole();
+    void ramasser_piece();
+    void ramasser_arme(Arme arme);
+    void ramasser_potion(Potion potion);
 
     protected:
-    std::vector<int> pos;
-    char symbole;
+    std::vector<int> _pos;
+    char _symbole;
 
 };
 
 class Personnage : public Entite{
     public:
-    Personnage(std::vector<int>& pos,char symbole);
+    Personnage(const std::vector<int>& pos,char symbole);
     void combattre(Personnage adversaire);
     void move(Dir dir);
 
     protected:
-    int PV;
-    int force;
+    int _PV;
+    int _force;
 
 };
 
 class Joueur : public Personnage{
-    Joueur(std::vector<int>& pos);
+    public :
+    Joueur(const std::vector<int>& pos);
 
 
 
     protected:
-    int piecesOr;
-    std::vector<Potion> potions;
-    std::vector<Arme> armes;
-    Arme armePrincipale;
+    int _piecesOr;
+    std::vector<Potion> _potions;
+    std::vector<Arme> _armes;
+    Arme _armePrincipale;
 
 };

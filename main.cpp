@@ -1,6 +1,6 @@
 #include "game.cpp"
 
 int main(){
-    Game jeu(std::string("foo2.txt"), std::vector<int>({3,5}));
+    Game jeu(std::string("Terrain.txt"), std::vector<int>({3,5}));
     jeu.lancer();
 }

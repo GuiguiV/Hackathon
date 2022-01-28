@@ -1,5 +1,5 @@
 #include "joueur.h"
-int main(){}
+
 
 Personnage::Personnage(std::vector<int>& pos,char symbole):Entite(pos,symbole),PV(10),force(1){}
 

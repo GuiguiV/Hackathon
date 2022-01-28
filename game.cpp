@@ -9,22 +9,19 @@
 #include "Terrain.cpp"
 
 
-class Game
-{
+class Game{
     protected:
-
     Joueur joueur;
     Terrain terrain;
 
     public:
-
-    game(const std::string&, const std::vector<int>&);
+    game(const std::string& Path, const std::vector<int>& Position);
     void lancer();
     void background_clear();
     void afficher();
 };
 
-Game::game(const std::string& Path, const std::vector<int>& Position) : terrain(Path), joueur(Position) {}
+Game::Game(const std::string& Path, const std::vector<int>& Position) : terrain(Path), joueur(Position) {}
 
 void Game::background_clear(){
   // efface la sortie
@@ -35,10 +32,6 @@ void Game::background_clear(){
   }
 }
 
-void Game::afficher(){
-    this->terrain->affiche();
-    this->joueur->affiche();
-}
 
 bool mouvement_possible (Dir dir, const Joueur& joueur, const Terrain& terrain){
     std::vector<int> pos=joueur.get_pos();
@@ -67,16 +60,16 @@ void Game::lancer(){
                 // si ce n'est pas fin de partie on affiche la clé
                 std::cout << key << std::endl;
                 if (key == 'd' && mouvement_possible(Dir::DROITE, this->joueur, this->terrain)){
-                    joueur->move(Dir::DROITE);
+                    joueur.move(Dir::DROITE);
                 }
                 else if (key == 'z' && mouvement_possible(Dir::HAUT, this->joueur, this->terrain)){
-                    joueur->move(Dir::HAUT);
+                    joueur.move(Dir::HAUT);
                 }
                 else if (key == 'q' && mouvement_possible(Dir::GAUCHE, this->joueur, this->terrain)){
-                    joueur->move(Dir::GAUCHE);
+                    joueur.move(Dir::GAUCHE);
                 }
                 else if (key == 's' && mouvement_possible(Dir::BAS, this->joueur, this->terrain)){
-                    joueur->move(Dir::BAS); 
+                    joueur.move(Dir::BAS); 
                 }
                 this->background_clear();
                 this->terrain.add(this->joueur.get_pos(),'@');

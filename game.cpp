@@ -79,6 +79,7 @@ void Game::lancer(){
                     joueur->move(Dir::BAS); 
                 }
                 this->terrain.add(this->joueur.get_pos());
+                this->backgroundClear();
                 this->terrain.print();
             }
             else {

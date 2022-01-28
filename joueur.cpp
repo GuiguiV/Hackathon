@@ -1,7 +1,10 @@
 #include "joueur.h"
 int main(){}
 
-Personnage::Personnage(std::vector<int> pos):Entite(pos),PV(10),force(1){}
+Personnage::Personnage(std::vector<int> pos,char symbole):Entite(pos,symbole),PV(10),force(1){}
+
+char Entite::get_symbole(){return this-> symbole;}
+
 
 std::vector<int> Entite::get_pos()const{
     return this->pos;
@@ -27,7 +30,6 @@ void Personnage::move(Dir dir){
             break;
     }
 }
-Joueur::Joueur(std::vector<int> pos):Personnage(pos),piecesOr(0){
+Joueur::Joueur(std::vector<int> pos):Personnage(pos,'@'),piecesOr(0){}
+Entite::Entite(std::vector<int> pos,char symbole):symbole(symbole),pos(pos){}
 
-}
-Entite::Entite(std::vector<int> pos):pos(pos){}

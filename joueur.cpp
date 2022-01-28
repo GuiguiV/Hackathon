@@ -4,7 +4,7 @@
 Joueur::Joueur(std::vector<int> pos):pos(pos){
 }
 
-std::vector<int> Joueur::get_pos(){
+std::vector<int> Joueur::get_pos()const{
     return this->pos;
 }
 void Joueur::set_pos(std::vector<int> pos){

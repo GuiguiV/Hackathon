@@ -1,6 +1,6 @@
 #include "Terrain.h" 
 
-Terrain::Terrain(const std::string& filename):ground(){
+Terrain::Terrain(const std::string& filename):_ground(){
     std::ifstream input_file(filename);
         if (!input_file.is_open()){
             std::cerr << "cannot open file '" << filename << "'" << std::endl;
@@ -13,29 +13,32 @@ Terrain::Terrain(const std::string& filename):ground(){
             int i = 0;
             while (iss >> x){
                 for (char c : x){
-                    ground.push_back(c);
+                    _ground.push_back(c);
                     i++;
                 }
             }
-            LineLenght = i;
+            _LineLenght = i;
         }
+        this->_oldground = _ground;
 }
 
-void Terrain::print() const{
+
+void Terrain::print(){
     int i = 0;
-    for (char c : ground){
+    for (char c : _ground){
         if (c == '0'){
             std::cout << " ";
         }
         else{
         std::cout << c;
         }
-        if (i == LineLenght - 1){
+        if (i == _LineLenght - 1){
             std::cout << std::endl;
             i = -1;
         }
         i++;
     }
+    _ground = _oldground;
 }
 
 void Terrain::add(Entite entite){
@@ -45,14 +48,14 @@ void Terrain::add(Entite entite){
 void Terrain::add(std::vector<int> pos, char key){
     int x = pos[0];
     int y = pos[1];
-    int where = LineLenght * y + x;
-    ground[where] = key;
+    int where = _LineLenght * y + x;
+    _ground[where] = key;
 }
 
 char Terrain::get_value(std::vector<int> pos) const{
     int x = pos[0];
     int y = pos[1];
-    int where = LineLenght * y + x;
-    return ground[where];
+    int where = _LineLenght * y + x;
+    return _ground[where];
 }
 

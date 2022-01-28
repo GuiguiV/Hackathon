@@ -40,6 +40,10 @@ void Terrain::add(std::vector<int> pos, char key){
     ground[where] = key;
 }
 
+void Terrain::add(Entite entite){
+    this->add(entite.get_pos(),entite.get_symbole());
+}
+
 char Terrain::get_value(std::vector<int> pos){
     int x = pos[0];
     int y = pos[1];

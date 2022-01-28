@@ -1,7 +1,7 @@
 #include "joueur.h"
+int main(){}
 
-
-Personnage::Personnage(std::vector<int> pos):Entite(pos),PV(10){}
+Personnage::Personnage(std::vector<int> pos):Entite(pos),PV(10),force(1){}
 
 std::vector<int> Entite::get_pos()const{
     return this->pos;
@@ -27,7 +27,7 @@ void Personnage::move(Dir dir){
             break;
     }
 }
-Joueur::Joueur(std::vector<int> pos):Personnage(pos){
+Joueur::Joueur(std::vector<int> pos):Personnage(pos),piecesOr(0){
 
 }
 Entite::Entite(std::vector<int> pos):pos(pos){}

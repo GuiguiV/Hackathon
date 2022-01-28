@@ -6,7 +6,7 @@
 #include "keyboard-event.cpp"
 #include <cstdlib>
 #include "joueur.cpp"
-#include "terrain.cpp"
+#include "Terrain.cpp"
 
 
 class Game

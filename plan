@@ -1,0 +1,25 @@
+class terrain
+
+class joueur;
+
+int evenement();
+
+
+
+
+int main()
+{
+Game jeu("path to map.txt); //initialise classe terrai et joueur
+jeu.lancer();
+}
+
+void jeu::lancer(){
+while(1)
+{
+écouter le evenements
+mettre à jour joueur
+effacer precedent
+afficher nouveau
+}
+
+}

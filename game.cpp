@@ -55,7 +55,7 @@ bool mouvement_possible (Dir dir, const Joueur& joueur, const Terrain& terrain){
     if (dir == Dir::BAS){
         new_pos = {pos[0],pos[1]-1};
     }
-    return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '-')
+    return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '_')
 }
 
 void Game::lancer(){

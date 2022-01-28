@@ -8,9 +8,9 @@ enum class Arme{EPEE, ARC};
 
 class Entite{
     public:
-    Entite(std::vector<int> pos,char symbole);
+    Entite(std::vector<int>& pos,char symbole);
     std::vector<int> get_pos()const;
-    void set_pos(std::vector<int> pos);
+    void set_pos(const std::vector<int>& pos);
     char get_symbole();
 
     protected:
@@ -21,7 +21,7 @@ class Entite{
 
 class Personnage : public Entite{
     public:
-    Personnage(std::vector<int> pos,char symbole);
+    Personnage(std::vector<int>& pos,char symbole);
     void combattre(Personnage adversaire);
     void move(Dir dir);
 
@@ -32,7 +32,7 @@ class Personnage : public Entite{
 };
 
 class Joueur : public Personnage{
-    Joueur(std::vector<int> pos);
+    Joueur(std::vector<int>& pos);
 
 
 

@@ -42,17 +42,18 @@ void Game::afficher(){
 
 bool mouvement_possible (Dir dir, const Joueur& joueur, const Terrain& terrain){
     std::vector<int> pos=joueur.get_pos();
+    std::vector<int> new_pos;
     if (dir == Dir::DROITE){
-        std::vector<int> new_pos {pos[0]+1,pos[1]};
+        new_pos = {pos[0]+1,pos[1]};
     }
     if (dir == Dir::GAUCHE){
-        std::vector<int> new_pos {pos[0]-1,pos[1]};
+        new_pos = {pos[0]-1,pos[1]};
     }
     if (dir == Dir::HAUT){
-        std::vector<int> new_pos {pos[0],pos[1]+1};
+        new_pos = {pos[0],pos[1]+1};
     }
     if (dir == Dir::BAS){
-        std::vector<int> new_pos {pos[0],pos[1]-1};
+        new_pos = {pos[0],pos[1]-1};
     }
     return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '-')
 }

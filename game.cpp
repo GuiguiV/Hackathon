@@ -44,16 +44,16 @@ bool mouvement_possible (Dir dir, const Joueur& joueur, const Terrain& terrain){
     std::vector<int> pos=joueur.get_pos();
     std::vector<char> tableau = terrain.get_tableau(); // ???
 
-    if (dir == DROITE){
+    if (dir == Dir::DROITE){
         std::vector<int> new_pos {pos[0]+1,pos[1]};
     }
-    if (dir == GAUCHE){
+    if (dir == Dir::GAUCHE){
         std::vector<int> new_pos {pos[0]-1,pos[1]};
     }
-    if (dir == HAUT){
+    if (dir == Dir::HAUT){
         std::vector<int> new_pos {pos[0],pos[1]+1};
     }
-    if (dir == BAS){
+    if (dir == Dir::BAS){
         std::vector<int> new_pos {pos[0],pos[1]-1};
     }
     return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '-')

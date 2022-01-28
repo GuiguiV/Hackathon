@@ -48,7 +48,7 @@ bool mouvement_possible (Dir dir, const Joueur& joueur, const Terrain& terrain){
     if (dir == Dir::BAS){
         new_pos[1] -= 1;
     }
-    return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '-');
+    return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '_');
 }
 
 void Game::lancer(){
@@ -74,6 +74,70 @@ void Game::lancer(){
                 this->background_clear();
                 this->terrain.add(this->joueur.get_pos(),'@');
                 this->terrain.print();
+                if (terrain.get_value(joueur.get_pos())=='+'){ // On rentre dans un couloir
+                    if (dir == Dir::DROITE){
+                        joueur->move(Dir::DROITE);
+                    }
+                    if (dir == Dir::GAUCHE){
+                        joueur->move(Dir::DROITE);
+                    }
+                    if (dir == Dir::HAUT){
+                        joueur->move(Dir::DROITE);
+                    }
+                    if (dir == Dir::BAS){
+                        joueur->move(Dir::DROITE);
+                    }
+                    // On est vraiment dans le couloir
+                    while (terrain.get_value(joueur.get_pos()) !='+'){// On n'est pas ressorti
+                        std::vector<int> pos = joueur.get_pos();
+                        int x = pos[0];
+                        int y = pos[1];
+                        if (dir == Dir::DROITE){
+                            if (terrain.get_value({x+1,y})== '#'){
+                                joueur->move(Dir::DROITE);
+                            }
+                            else if (terrain.get_value({x,y+1})== '#'){
+                                joueur->move(Dir::HAUT);
+                            }
+                            else if (terrain.get_value({x,y-1})== '#'){
+                                joueur->move(Dir::BAS);
+                            }
+                        }
+                        else if (dir == Dir::GAUCHE){
+                            if (terrain.get_value({x-1,y})== '#'){
+                                joueur->move(Dir::GAUCHE);
+                            }
+                            else if (terrain.get_value({x,y+1})== '#'){
+                                joueur->move(Dir::HAUT);
+                            }
+                            else if (terrain.get_value({x,y-1})== '#'){
+                                joueur->move(Dir::BAS);
+                            }
+                        }
+                        else if (dir == Dir::HAUT){
+                            if (terrain.get_value({x,y+1})== '#'){
+                                joueur->move(Dir::HAUT);
+                            }
+                            else if (terrain.get_value({x+1,y})== '#'){
+                                joueur->move(Dir::DROIT);
+                            }
+                            else if (terrain.get_value({x-1,y})== '#'){
+                                joueur->move(Dir::GAUCHE);
+                            }
+                        }
+                        else if (dir == Dir::BAS){
+                            if (terrain.get_value({x,y-1})== '#'){
+                                joueur->move(Dir::BAS);
+                            }
+                            else if (terrain.get_value({x+1,y})== '#'){
+                                joueur->move(Dir::DROIT);
+                            }
+                            else if (terrain.get_value({x-1,y})== '#'){
+                                joueur->move(Dir::GAUCHE);
+                            }
+                        }
+                    }
+                }
             }
             else {
                 // on efface

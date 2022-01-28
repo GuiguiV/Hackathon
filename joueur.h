@@ -1,5 +1,5 @@
-#include <vector>
 #pragma once
+#include <vector>
 
 enum class Dir{GAUCHE,DROITE,HAUT,BAS};
 

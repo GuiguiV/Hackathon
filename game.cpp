@@ -18,7 +18,7 @@ class Game
 
     public:
 
-    game(const std::string&);
+    game(const std::string&, const std::vector<int>&);
     void lancer();
     void background_clear();
     void afficher();
@@ -42,20 +42,20 @@ void Game::afficher(){
 
 bool mouvement_possible (Dir dir, const Joueur& joueur, const Terrain& terrain){
     std::vector<int> pos=joueur.get_pos();
-    std::vector<int> new_pos;
+    std::vector<int> new_pos {pos[0], pos[1]};
     if (dir == Dir::DROITE){
-        new_pos = {pos[0]+1,pos[1]};
+        new_pos[0] += 1;
     }
     if (dir == Dir::GAUCHE){
-        new_pos = {pos[0]-1,pos[1]};
+        new_pos[0] -= 1;
     }
     if (dir == Dir::HAUT){
-        new_pos = {pos[0],pos[1]+1};
+        new_pos[1] += 1;
     }
     if (dir == Dir::BAS){
-        new_pos = {pos[0],pos[1]-1};
+        new_pos[1] -= 1;
     }
-    return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '_')
+    return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '-');
 }
 
 void Game::lancer(){
@@ -78,13 +78,13 @@ void Game::lancer(){
                 else if (key == 's' && mouvement_possible(Dir::BAS, this->joueur, this->terrain)){
                     joueur->move(Dir::BAS); 
                 }
-                this->terrain.add(this->joueur.get_pos());
-                this->backgroundClear();
+                this->background_clear();
+                this->terrain.add(this->joueur.get_pos(),'@');
                 this->terrain.print();
             }
             else {
                 // on efface
-                this->backgroundClear();
+                this->background_clear();
                 std::cout << "END OF GAME" << std::endl;
                 exit(2);
             }

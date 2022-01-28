@@ -6,7 +6,7 @@ enum class Dir{GAUCHE,DROITE,HAUT,BAS};
 class Joueur{
 
     Joueur(std::vector<int>);
-    std::vector<int> get_pos();
+     std::vector<int> get_pos()const;
     void set_pos(std::vector<int> pos);
     void move(Dir dir);
 

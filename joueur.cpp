@@ -17,10 +17,10 @@ void Joueur::move(Dir dir){
     Dir dir(dir);
     switch(dir){
         case Dir::GAUCHE:
-            this->set_pos(std::vector<int>(x,y+1));
+            this->set_pos(std::vector<int>(x-1,y));
             break;
         case Dir::DROITE:
-            this->set_pos(std::vector<int>());
+            this->set_pos(std::vector<int>(x+1,y));
             break;
         
     }

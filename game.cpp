@@ -78,7 +78,7 @@ void Game::lancer(){
                 else if (key == 's' && mouvement_possible(Dir::BAS, this->joueur, this->terrain)){
                     joueur->move(Dir::BAS); 
                 }
-                this->terrain.add_joueur(this->joueur.get_pos());
+                this->terrain.add(this->joueur.get_pos());
                 this->terrain.print();
             }
             else {

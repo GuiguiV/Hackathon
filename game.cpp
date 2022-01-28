@@ -7,12 +7,12 @@
 #include "terrain.cpp"
 
 
-class game
+class Game
 {
     protected:
 
-    joueur joueur;
-    terrain terrain;
+    Joueur joueur;
+    Terrain terrain;
 
     public:
 
@@ -22,9 +22,9 @@ class game
     void afficher();
 };
 
-game::game(const std::string& Path, const std::vector<int>& Position) : terrain(Path), joueur(Position) {}
+Game::game(const std::string& Path, const std::vector<int>& Position) : terrain(Path), joueur(Position) {}
 
-void game::background_clear(){
+void Game::background_clear(){
   // efface la sortie
   int out = system("clear");
   if (out != 0){
@@ -33,23 +33,32 @@ void game::background_clear(){
   }
 }
 
-void game::afficher(){
+void Game::afficher(){
     this->terrain->affiche();
     this->joueur->affiche();
 }
 
-void game::lancer(){
+void Game::lancer(){
     char key='q';
     while (true){
         if (keyEvent()) { // une key a été pressée
             std::cin >> key;
-            if (key != END_OF_GAME) {
+            if (key != 'x') {
                 // si ce n'est pas fin de partie on affiche la clé
                 std::cout << key << std::endl;
-                if (is_possible_move(Joueur this->joueur))
-                this->joueur.move()
-                moveSnake(snake, key, posfruit);
-                drawSnake(snake, bg, posfruit);
+                if (key == 'd' && mouvement_possible(DIR::DROITE, this->joueur, this->terrain)){
+                    joueur->move(DIR::DROITE);
+                }
+                else if (key == 'z' && mouvement_possible(DIR::HAUT, this->joueur, this->terrain)){
+                    joueur->move(DIR::HAUT);
+                }
+                else if (key == 'q' && mouvement_possible(DIR::GAUCHE, this->joueur, this->terrain)){
+                    joueur->move(DIR::GAUCHE);
+                }
+                else if (key == 's' && mouvement_possible(DIR::BAS, this->joueur, this->terrain)){
+                    joueur->move(DIR::BAS); 
+                }
+                this->terrain.add_joueur(this->joueur.get_pos());
                 this->terrain.print();
             }
             else {

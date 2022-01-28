@@ -26,7 +26,7 @@ void Personnage::move(Dir dir){
             this->_pos = std::vector<int>(x,y-1);
             break;
         case Dir::BAS:
-            this->set_pos(std::vector<int>(x,y+1));
+            this->_pos = std::vector<int>(x,y+1);
             break;
     }
 }

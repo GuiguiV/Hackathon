@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "joueur.h"
 
 class Terrain{
     std::vector<char> ground;

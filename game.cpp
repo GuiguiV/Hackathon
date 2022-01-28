@@ -5,8 +5,8 @@
 #include <vector>
 #include "keyboard-event.cpp"
 #include <cstdlib>
-#include "joueur.cpp"
-#include "Terrain.cpp"
+#include "Terrain.h"
+#include "joueur.h"
 
 
 class Game{
@@ -15,7 +15,7 @@ class Game{
     Terrain terrain;
 
     public:
-    game(const std::string& Path, const std::vector<int>& Position);
+    Game(const std::string& Path, const std::vector<int>& Position);
     void lancer();
     void background_clear();
     void afficher();

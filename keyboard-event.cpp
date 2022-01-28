@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <sys/ioctl.h>
 #include <termios.h>
@@ -55,15 +56,4 @@ int keyEvent()
   // et stocker le caractÃ¨re lu dans la mÃ©moire bytesWaiting
   ioctl(STDIN, FIONREAD, &bytesWaiting);
   return bytesWaiting;
-}
-
-void sleepOneLap(const int ms)
-{
-  clock_t end;
-  // on initialise la quantitÃ© de temps Ã  attendre
-  end = clock() + ms * CLOCKS_PER_SEC / 1000;
-  while (clock() < end)
-  {
-    // wait i.e. do nothing
-  }
 }

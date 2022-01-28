@@ -2,13 +2,13 @@
 #include "joueur.h"
 
 
-Joueur::Joueur(std::vector<int> pos):pos(pos){
+Joueur::Joueur(const std::vector<int>& pos):pos(pos){
 }
 
-std::vector<int> Joueur::get_pos(){
+std::vector<int> Joueur::get_pos() const {
     return this->pos;
 }
-void Joueur::set_pos(std::vector<int> pos){
+void Joueur::set_pos(const std::vector<int>& pos){
     this->pos = pos;
 }
 void Joueur::move(Dir dir){

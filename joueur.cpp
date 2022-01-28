@@ -17,16 +17,16 @@ void Personnage::move(Dir dir){
     int y = this->_pos[1];
     switch(dir){
         case Dir::GAUCHE:
-            this->_pos = std::vector<int>(x-1,y);
+            this->_pos = std::vector<int>{x-1,y};
             break;
         case Dir::DROITE:
-            this->_pos = std::vector<int>(x+1,y);
+            this->_pos = std::vector<int>{x+1,y};
             break;
         case Dir::HAUT:
-            this->_pos = std::vector<int>(x,y-1);
+            this->_pos = std::vector<int>{x,y-1};
             break;
         case Dir::BAS:
-            this->_pos = std::vector<int>(x,y+1);
+            this->_pos = std::vector<int>{x,y+1};
             break;
     }
 }

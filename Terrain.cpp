@@ -10,10 +10,11 @@ Terrain::Terrain(const std::string& filename):ground(){
         while (getline(input_file, line)){
             std::istringstream iss(line);
             std::string x;
-            int i;
+            int i = 0;
             while (iss >> x){
                 for (char c : x){
                     ground.push_back(c);
+                    i++;
                 }
             }
             LineLenght = i;
@@ -21,7 +22,20 @@ Terrain::Terrain(const std::string& filename):ground(){
 }
 
 void Terrain::print(){
-    for (int i = 0; i < ground.size(); i++){
-        std::cout << ground[i];
+    int i = 0;
+    for (char c : ground){
+        std::cout << c;
+        if (i == LineLenght - 1){
+            std::cout << std::endl;
+            i = -1;
+        }
+        i++;
     }
+}
+
+char Terrain::get_value(std::vector<int> pos){
+    int x = pos[0];
+    int y = pos[1];
+    int where = LineLenght * y + x;
+    return ground[where];
 }

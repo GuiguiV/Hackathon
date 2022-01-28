@@ -11,6 +11,7 @@ class Terrain{
     int LineLenght;
     public:
     Terrain(const std::string& filename);
-    void add_joueur(std::pair<int, int>);
+    void add_joueur(std::pair<int, int> pos);
+    char get_value(std::vector<int> pos);
     void print();
 };

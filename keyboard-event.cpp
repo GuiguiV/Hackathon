@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <sys/ioctl.h>
 #include <termios.h>

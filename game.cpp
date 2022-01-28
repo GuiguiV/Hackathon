@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -38,6 +40,25 @@ void Game::afficher(){
     this->joueur->affiche();
 }
 
+bool mouvement_possible (Dir dir, const Joueur& joueur, const Terrain& terrain){
+    std::vector<int> pos=joueur.get_pos();
+    std::vector<char> tableau = terrain.get_tableau(); // ???
+
+    if (dir == DROITE){
+        std::vector<int> new_pos {pos[0]+1,pos[1]};
+    }
+    if (dir == GAUCHE){
+        std::vector<int> new_pos {pos[0]-1,pos[1]};
+    }
+    if (dir == HAUT){
+        std::vector<int> new_pos {pos[0],pos[1]+1};
+    }
+    if (dir == BAS){
+        std::vector<int> new_pos {pos[0],pos[1]-1};
+    }
+    return (terrain.get_value(new_pos) != '|' && terrain.get_value(new_pos) != '-')
+}
+
 void Game::lancer(){
     char key='q';
     while (true){
@@ -46,17 +67,17 @@ void Game::lancer(){
             if (key != 'x') {
                 // si ce n'est pas fin de partie on affiche la clé
                 std::cout << key << std::endl;
-                if (key == 'd' && mouvement_possible(DIR::DROITE, this->joueur, this->terrain)){
-                    joueur->move(DIR::DROITE);
+                if (key == 'd' && mouvement_possible(Dir::DROITE, this->joueur, this->terrain)){
+                    joueur->move(Dir::DROITE);
                 }
-                else if (key == 'z' && mouvement_possible(DIR::HAUT, this->joueur, this->terrain)){
-                    joueur->move(DIR::HAUT);
+                else if (key == 'z' && mouvement_possible(Dir::HAUT, this->joueur, this->terrain)){
+                    joueur->move(Dir::HAUT);
                 }
-                else if (key == 'q' && mouvement_possible(DIR::GAUCHE, this->joueur, this->terrain)){
-                    joueur->move(DIR::GAUCHE);
+                else if (key == 'q' && mouvement_possible(Dir::GAUCHE, this->joueur, this->terrain)){
+                    joueur->move(Dir::GAUCHE);
                 }
-                else if (key == 's' && mouvement_possible(DIR::BAS, this->joueur, this->terrain)){
-                    joueur->move(DIR::BAS); 
+                else if (key == 's' && mouvement_possible(Dir::BAS, this->joueur, this->terrain)){
+                    joueur->move(Dir::BAS); 
                 }
                 this->terrain.add_joueur(this->joueur.get_pos());
                 this->terrain.print();

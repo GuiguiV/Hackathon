@@ -82,6 +82,7 @@ void Game::lancer(){
             }
             else {
                 // on efface
+                this->backgroundClear();
                 std::cout << "END OF GAME" << std::endl;
                 exit(2);
             }

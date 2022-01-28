@@ -1,35 +1,35 @@
 #include "joueur.h"
 int main(){}
 
-Personnage::Personnage(std::vector<int>& pos,char symbole):Entite(pos,symbole),PV(10),force(1){}
+Personnage::Personnage(const std::vector<int>& pos,char symbole):Entite(pos,symbole),_PV(10),_force(1){}
 
-char Entite::get_symbole(){return this-> symbole;}
+char Entite::get_symbole(){return this-> _symbole;}
 
 
 std::vector<int> Entite::get_pos()const{
-    return this->pos;
+    return this->_pos;
 }
 void Entite::set_pos(const std::vector<int>& pos){
-    this->pos = pos;
+    this->_pos = pos;
 }
 void Personnage::move(Dir dir){
-    int x = this->pos[0];
-    int y = this->pos[1];
+    int x = this->_pos[0];
+    int y = this->_pos[1];
     switch(dir){
         case Dir::GAUCHE:
-            this->set_pos(std::vector<int>(x-1,y));
+            this->_pos = std::vector<int>(x-1,y);
             break;
         case Dir::DROITE:
-            this->set_pos(std::vector<int>(x+1,y));
+            this->_pos = std::vector<int>(x+1,y);
             break;
         case Dir::HAUT:
-            this->set_pos(std::vector<int>(x+1,y));
+            this->_pos = std::vector<int>(x,y-1));
             break;
         case Dir::BAS:
-            this->set_pos(std::vector<int>(x+1,y));
+            this->set_pos(std::vector<int>(x,y+1));
             break;
     }
 }
-Joueur::Joueur(std::vector<int>& pos):Personnage(pos,'@'),piecesOr(0){}
-Entite::Entite(std::vector<int>& pos,char symbole):symbole(symbole),pos(pos){}
+Joueur::Joueur(const std::vector<int>& pos):Personnage(pos,'@'),_piecesOr(0){}
+Entite::Entite(const std::vector<int>& pos,char symbole):_symbole(symbole),_pos(pos){}
 

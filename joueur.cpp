@@ -1,16 +1,16 @@
 #include "joueur.h"
 
 
-Joueur::Joueur(std::vector<int> pos):pos(pos){
+Personnage::Personnage(std::vector<int> pos):pos(pos),PV(10){
 }
 
-std::vector<int> Joueur::get_pos(){
+std::vector<int> Personnage::get_pos()const{
     return this->pos;
 }
-void Joueur::set_pos(std::vector<int> pos){
+void Personnage::set_pos(std::vector<int> pos){
     this->pos = pos;
 }
-void Joueur::move(Dir dir){
+void Personnage::move(Dir dir){
     int x = this->pos[0];
     int y = this->pos[1];
     switch(dir){
@@ -27,4 +27,7 @@ void Joueur::move(Dir dir){
             this->set_pos(std::vector<int>(x+1,y));
             break;
     }
+}
+Joueur::Joueur(std::vector<int> pos):Personnage(pos){
+
 }

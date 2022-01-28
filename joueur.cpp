@@ -1,13 +1,12 @@
 #include "joueur.h"
 
 
-Personnage::Personnage(std::vector<int> pos):Entite(pos),PV(10){
-}
+Personnage::Personnage(std::vector<int> pos):Entite(pos),PV(10){}
 
-std::vector<int> Personnage::get_pos()const{
+std::vector<int> Entite::get_pos()const{
     return this->pos;
 }
-void Personnage::set_pos(std::vector<int> pos){
+void Entite::set_pos(std::vector<int> pos){
     this->pos = pos;
 }
 void Personnage::move(Dir dir){

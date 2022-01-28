@@ -1,4 +1,4 @@
-
+#pragma once
 #include "joueur.h"
 
 
@@ -14,14 +14,18 @@ void Joueur::set_pos(std::vector<int> pos){
 void Joueur::move(Dir dir){
     int x = this->pos[0];
     int y = this->pos[1];
-    Dir dir(dir);
     switch(dir){
         case Dir::GAUCHE:
-            this->set_pos(std::vector<int>(x,y+1));
+            this->set_pos(std::vector<int>(x-1,y));
             break;
         case Dir::DROITE:
-            this->set_pos(std::vector<int>());
+            this->set_pos(std::vector<int>(x+1,y));
             break;
-        
+        case Dir::HAUT:
+            this->set_pos(std::vector<int>(x+1,y));
+            break;
+        case Dir::BAS:
+            this->set_pos(std::vector<int>(x+1,y));
+            break;
     }
 }

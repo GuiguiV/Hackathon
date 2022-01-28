@@ -12,33 +12,17 @@ const char WALL_SIDE = '|';
 const int ms = 200;
 const char END_OF_GAME = 'x';
 
-void drawPlayground (const std::vector<std::vector<char>>& playground){
+class terrain;
+
+void drawPlayground (terrain playground){
+  std::vector<std::vector<char>> tableau = playground.get_tableau(); // à modifier
     // affiche la matrice (le playground)
-    for (int i=0 ; i<playground.size() ; i++){
-        for (int j=0 ; j<playground[i].size() ; j++){
-            std::cout << playground[i][j];
+    for (int i=0 ; i<tableau.size() ; i++){
+        for (int j=0 ; j<tableau[i].size() ; j++){
+            std::cout << tableau[i][j];
         }
         std::cout << std::endl;
     }
-}
-
-void playgroundSetup(std::vector<std::vector<char>>& playground){
-  // vide le playground
-  for (int i=0 ; i<playground.size(); i++){
-    for (int j=0 ; j<playground[0].size(); j++){
-        playground.at(i).at(j)=GROUND;
-    }
-  }
-  for (int i=0 ; i<playground.size(); i++){
-      playground.at(i).at(0)=WALL_SIDE;
-       playground.at(i).at(playground[0].size()-1)=WALL_SIDE;
-  }
-  for (int j=0 ; j<playground[0].size(); j++){
-    playground.at(0).at(j)=WALL_TOP;
-  }
-  for (int j=1 ; j<playground[0].size()-1; j++){
-      playground.at(playground.size()-1).at(j)=WALL_TOP;
-  }
 }
 
 
@@ -58,15 +42,6 @@ void moveFruit (std::vector<int>& posfruit){
   posfruit={x+1,y+1};
 }
 
-std::vector<std::vector<int>> createSnake (int i){ // i=longueur du serpent
-// crée le serpent au milieu
-  std::vector<std::vector<int>> s;
-  for (int j=0 ; j<i ; j++){
-    std::vector<int> s_j= {LINES/2,COLUMNS/2 + j};
-    s.push_back(s_j);
-  }
-  return s;
-}
 
 void moveSnake(std::vector<std::vector<int>>& s, char key, std::vector<int>& posfruit){
   // fait avancer le serpent
@@ -75,42 +50,27 @@ void moveSnake(std::vector<std::vector<int>>& s, char key, std::vector<int>& pos
     s.push_back(s[n-1]);
     moveFruit(posfruit);
   }
-  for (int i=0 ; i<n-1 ; i++){
-    s[n-i-1]=s[n-i-2];
-  }
   if (key == 'd'){
-    s[0][1]=s[0][1]+1;
+    s[1]=s[1]+1;
   }
   else if (key == 'z'){
-    s[0][0]=s[0][0]-1;
+    s[0]=s[0]-1;
   }
   else if (key == 'q'){
-    s[0][1]=s[0][1]-1;
+    s[1]=s[1]-1;
       
   }
   else if (key == 's'){
-    s[0][0]=s[0][0]+1; 
-  }
-  for (int i=1; i<n;i++){
-    if (s[i]==s[0]){
-      backgroundClear();
-      std::cout << "Aie ma tête" << std::endl;
-      exit(2);
-    }
+    s[0]=s[0]+1; 
   }
 }
 
 
 
-void drawSnake(std::vector<std::vector<int>>& s, std::vector<std::vector<char>>& playground, std::vector<int>& posfruit){
+void drawSnake(std::vector<int>& s, std::vector<std::vector<char>>& playground, std::vector<int>& posfruit){
   // fait apparaitre le serpent dans le playground
   playgroundSetup(playground);
-  for (int i=1; i<s.size();i++){
-    int x = s[i][0];
-    int y = s[i][1];
-    playground[x][y]='o';
-  }
-  playground[s[0][0]][s[0][1]]='O';
+  playground[s[0]][s[1]]='@';
   playground.at(posfruit[0]).at(posfruit[1])='f';
 }
 
@@ -118,7 +78,7 @@ void drawSnake(std::vector<std::vector<int>>& s, std::vector<std::vector<char>>&
 
 
 
-void startGame(const int ms, std::vector<std::vector<char>> &bg, std::vector<std::vector<int>>& snake, std::vector<int>& posfruit)
+void startGame(const int ms, std::vector<std::vector<char>> &bg, std::vector<int>& snake, std::vector<int>& posfruit)
 {char key='q';
   while (true)
     {
@@ -168,6 +128,6 @@ int main (int argc, char** argv){
     playgroundSetup(playground);
     drawPlayground (playground);
     std::vector<int> posfruit = {4,9};
-    std::vector<std::vector<int>> snake = createSnake(6);
+    std::vector<int> snake = {0,0};
     startGame(ms, playground, snake,posfruit);
 }

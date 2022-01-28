@@ -2,6 +2,8 @@ class terrain
 
 class joueur;
 
+class game;
+
 int evenement();
 
 

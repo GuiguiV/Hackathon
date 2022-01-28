@@ -16,19 +16,24 @@ class Joueur public Personnage{
 };
 
 
-class Personnage{
+class Personnage public Entite{
     public:
-    Personnage(std::vector<int>);
-     std::vector<int> get_pos()const;
-    void set_pos(std::vector<int> pos);
+    Personnage(std::vector<int> pos);
     void move(Dir dir);
 
     protected:
-    std::vector<int> pos;
     int PV;
 
 }
 
-class Mechant public Personnage{
+class Entite{
+    Entite(std::vector<int> pos);
+    public:
+    std::vector<int> get_pos()const;
+    void set_pos(std::vector<int> pos);
+        
+    protected:
+    std::vector<int> pos;
+
 
 }

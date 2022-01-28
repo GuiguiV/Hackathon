@@ -2,6 +2,8 @@
 #include <vector>
 
 enum class Dir{GAUCHE,DROITE,HAUT,BAS};
+enum class Potion{VIE}
+enum class Arme{EPEE, ARC}
 
 class Joueur public Personnage{
     Joueur(std::vector<int> pos);
@@ -9,9 +11,8 @@ class Joueur public Personnage{
 
     protected:
     int piecesOr = 0;
-    //ajouter des enum pour les trucs suivants : 
-    int nbPotionsHeal = 0;
-    int typeArme = 1; //1 : epee, 2:arc
+    std::vector<Potion> potions;
+    std::vector<Arme> armes;
 
 };
 
